@@ -5,6 +5,7 @@ using UnityEngine;
 public class BeamController : MonoBehaviour
 {
     [SerializeField] GameObject rotateBlock;
+    [SerializeField] float sensitivity;
     Rigidbody rotateRb;
     float lastMouseX;
     Rigidbody rb;
@@ -24,9 +25,18 @@ public class BeamController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            rotateBlock.transform.Rotate(new Vector3(0f, 0f, -(Input.mousePosition.x - lastMouseX)));
+            rotateRb.angularVelocity = new Vector3(0f, 0f, -(Input.mousePosition.x - lastMouseX) * Time.deltaTime * sensitivity);
 
             lastMouseX = Input.mousePosition.x;
         }
+
+        //Clamps the rotation of the block
+        rotateBlock.transform.rotation =
+            new Quaternion(rotateBlock.transform.rotation.x, rotateBlock.transform.rotation.y, 
+            Mathf.Clamp( rotateBlock.transform.rotation.z, -.4f, .4f), 
+            rotateBlock.transform.rotation.w);
+        rotateBlock.transform.position = transform.position;
+
+        rb.velocity = new Vector3(0f, 1f, 0f);
     }
 }
