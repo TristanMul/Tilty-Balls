@@ -35,7 +35,12 @@ public class BallPickup : MonoBehaviour
 
     Color RandomColor()
     {
-       return new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        int colorToPick = Random.Range(0, ColorManagement.instance.colorsToPickFrom.Length);
+        if (ColorManagement.instance.colorsToPickFrom.Length != 0)
+        {
+            return ColorManagement.instance.colorsToPickFrom[colorToPick];
+        }
+        else return Color.white;
     }
 
     IEnumerator RemoveInTime(float time)
