@@ -6,6 +6,7 @@ public class BeamController : MonoBehaviour
 {
     [SerializeField] GameObject rotateBlock;
     [SerializeField] float sensitivity;
+    [SerializeField] float moveSpeed;
     Rigidbody rotateRb;
     float lastMouseX;
     Rigidbody rb;
@@ -37,6 +38,6 @@ public class BeamController : MonoBehaviour
             rotateBlock.transform.rotation.w);
         rotateBlock.transform.position = transform.position;
 
-        rb.velocity = new Vector3(0f, 1f, 0f);
+        rb.velocity = new Vector3(0f, moveSpeed, 0f);
     }
 }
