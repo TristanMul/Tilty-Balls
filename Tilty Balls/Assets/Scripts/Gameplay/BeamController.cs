@@ -10,6 +10,8 @@ public class BeamController : MonoBehaviour
     Rigidbody rotateRb;
     float lastMouseX;
     Rigidbody rb;
+
+    bool hasFinished;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,24 +22,46 @@ public class BeamController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (!hasFinished)
         {
-            lastMouseX = Input.mousePosition.x;
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                lastMouseX = Input.mousePosition.x;
+                rotateRb.isKinematic = false;
+            }
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                rotateRb.angularVelocity = new Vector3(0f, 0f, -(Input.mousePosition.x - lastMouseX) * Time.deltaTime * sensitivity);
+
+                lastMouseX = Input.mousePosition.x;
+            }
+            if (Input.GetKeyUp(KeyCode.Mouse0))
+            {
+                rotateRb.isKinematic = true;
+                
+            }
+
+            //Clamps the rotation of the block
+            rotateBlock.transform.rotation =
+                new Quaternion(rotateBlock.transform.rotation.x, rotateBlock.transform.rotation.y,
+                Mathf.Clamp(rotateBlock.transform.rotation.z, -.4f, .4f),
+                rotateBlock.transform.rotation.w);
+            rotateBlock.transform.position = transform.position;
+
+            rb.velocity = new Vector3(0f, moveSpeed, 0f);
+            Debug.Log(rotateBlock.transform.rotation);
         }
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (GameEventManager.instance.finishThreshold.position.y < transform.position.y)
         {
-            rotateRb.angularVelocity = new Vector3(0f, 0f, -(Input.mousePosition.x - lastMouseX) * Time.deltaTime * sensitivity);
-
-            lastMouseX = Input.mousePosition.x;
+            GameEventManager.instance.ReachFinish();
         }
+    }
 
-        //Clamps the rotation of the block
-        rotateBlock.transform.rotation =
-            new Quaternion(rotateBlock.transform.rotation.x, rotateBlock.transform.rotation.y, 
-            Mathf.Clamp( rotateBlock.transform.rotation.z, -.4f, .4f), 
-            rotateBlock.transform.rotation.w);
-        rotateBlock.transform.position = transform.position;
-
-        rb.velocity = new Vector3(0f, moveSpeed, 0f);
+    IEnumerator RotateTowardsTargetRotation() {
+        Quaternion targetRotation = new Quaternion(0.0f, 0.0f, 0.2f, 1.0f);
+        while (transform.rotation != targetRotation) {
+            //transform.rotate
+            yield return null;
+        }
     }
 }
