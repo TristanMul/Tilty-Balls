@@ -9642,9 +9642,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1088123048024894, guid: 000cb89121d89a24f9ef6d3659294de7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1462276444935254, guid: 000cb89121d89a24f9ef6d3659294de7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497596936287212, guid: 000cb89121d89a24f9ef6d3659294de7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1712021104847056, guid: 000cb89121d89a24f9ef6d3659294de7, type: 3}
       propertyPath: m_Name
       value: Britney_V1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960113725809478, guid: 000cb89121d89a24f9ef6d3659294de7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4245325170019272, guid: 000cb89121d89a24f9ef6d3659294de7, type: 3}
       propertyPath: m_LocalRotation.x
