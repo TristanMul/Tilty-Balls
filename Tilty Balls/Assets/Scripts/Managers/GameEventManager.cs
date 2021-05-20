@@ -7,9 +7,6 @@ public class GameEventManager : MonoBehaviour
 {
     public static GameEventManager instance;
 
-    [SerializeField]public Transform finishThreshold;
-
-
     public event Action reachFinish;
     // Start is called before the first frame update
     void Start()
@@ -20,9 +17,12 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Calls the reach finish event
-    /// </summary>
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
     public void ReachFinish()
     {
         reachFinish();
