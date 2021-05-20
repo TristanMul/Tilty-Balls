@@ -13,7 +13,7 @@ public class BallPickup : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         renderer = GetComponent<Renderer>();
         collider = GetComponent<Collider>();
-        float randomSize = Random.Range(.5f, 1f) ;
+        float randomSize = Random.Range(.7f, 1f) ;
         transform.localScale = new Vector3(randomSize, randomSize, randomSize);
     }
 
@@ -34,7 +34,7 @@ public class BallPickup : MonoBehaviour
         gameObject.layer = 0;
         Color newColor = RandomColor();
         renderer.material.color = newColor;
-        renderer.material.SetColor("_EmissionColor", newColor);
+        renderer.material.SetColor("_EmissionColor", newColor/2);
 
     }
 

@@ -25,6 +25,7 @@ public class GameEventManager : MonoBehaviour
     /// </summary>
     public void ReachFinish()
     {
-        reachFinish();
+        Debug.Log("Reached finish");
+        //reachFinish();
     }
 }
