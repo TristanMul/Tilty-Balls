@@ -5076,7 +5076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateBlock: {fileID: 637658046}
-  sensitivity: 1
+  sensitivity: 10
   moveSpeed: 2
 --- !u!54 &481771820
 Rigidbody:
@@ -21170,72 +21170,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2138434634}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &9020262379242787122
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 9016591416747383832, guid: 5c390dd3b22ea43d988c507c6013e2f3,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 21.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 9016591416747383832, guid: 5c390dd3b22ea43d988c507c6013e2f3,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 9016591416747383832, guid: 5c390dd3b22ea43d988c507c6013e2f3,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 27.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9016591416747383832, guid: 5c390dd3b22ea43d988c507c6013e2f3,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9016591416747383832, guid: 5c390dd3b22ea43d988c507c6013e2f3,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.6875967
-      objectReference: {fileID: 0}
-    - target: {fileID: 9016591416747383832, guid: 5c390dd3b22ea43d988c507c6013e2f3,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9016591416747383832, guid: 5c390dd3b22ea43d988c507c6013e2f3,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.72609293
-      objectReference: {fileID: 0}
-    - target: {fileID: 9016591416747383832, guid: 5c390dd3b22ea43d988c507c6013e2f3,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 9016591416747383832, guid: 5c390dd3b22ea43d988c507c6013e2f3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9016591416747383832, guid: 5c390dd3b22ea43d988c507c6013e2f3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -86.880005
-      objectReference: {fileID: 0}
-    - target: {fileID: 9016591416747383832, guid: 5c390dd3b22ea43d988c507c6013e2f3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9018596538975325730, guid: 5c390dd3b22ea43d988c507c6013e2f3,
-        type: 3}
-      propertyPath: m_Name
-      value: Britney_V1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5c390dd3b22ea43d988c507c6013e2f3, type: 3}
