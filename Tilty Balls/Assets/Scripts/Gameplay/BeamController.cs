@@ -53,7 +53,6 @@ public class BeamController : MonoBehaviour
             rotateBlock.transform.position = transform.position;
 
             rb.velocity = new Vector3(0f, moveSpeed, 0f);
-            Debug.Log(rotateBlock.transform.rotation);
         }
         if (GameEventManager.instance.finishThreshold.position.y < transform.position.y)
         {
