@@ -7,6 +7,7 @@ public class BeamController : MonoBehaviour
     [SerializeField] GameObject rotateBlock;
     [SerializeField] float sensitivity;
     [SerializeField] float moveSpeed;
+    [SerializeField] float maxRotationSpeed;
     Rigidbody rotateRb;
     float lastMouseX;
     Rigidbody rb;
@@ -31,7 +32,10 @@ public class BeamController : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.Mouse0))
             {
-                rotateRb.angularVelocity = new Vector3(0f, 0f, -(Input.mousePosition.x - lastMouseX) * Time.deltaTime * sensitivity);
+                float rotationSpeed = -(Input.mousePosition.x - lastMouseX) * Time.deltaTime * sensitivity;
+                if(rotationSpeed > maxRotationSpeed) { rotationSpeed = maxRotationSpeed; }//clamps the rotation speed so it's not too high
+                if(rotationSpeed < -maxRotationSpeed) { rotationSpeed = -maxRotationSpeed; }
+                rotateRb.angularVelocity = new Vector3(0f, 0f, rotationSpeed);
 
                 lastMouseX = Input.mousePosition.x;
             }
