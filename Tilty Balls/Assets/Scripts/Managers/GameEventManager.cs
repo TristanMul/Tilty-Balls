@@ -12,11 +12,12 @@ public class GameEventManager : MonoBehaviour
 
     public event Action reachFinish;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (!instance)
         {
             instance = this;
+            Debug.Log(instance);
         }
     }
 
@@ -26,6 +27,6 @@ public class GameEventManager : MonoBehaviour
     public void ReachFinish()
     {
         Debug.Log("Reached finish");
-        //reachFinish();
+        reachFinish();
     }
 }

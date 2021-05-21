@@ -8,13 +8,15 @@ public class BeamController : MonoBehaviour
     [SerializeField] float sensitivity;
     [SerializeField] float moveSpeed;
     [SerializeField] float maxRotationSpeed;
-    Rigidbody rotateRb;
+    [HideInInspector] public Rigidbody rotateRb;
     float lastMouseX;
     Rigidbody rb;
 
     bool hasFinished;
+
+    [SerializeField] Transform pullUpBar;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
         rotateRb = rotateBlock.GetComponent<Rigidbody>();
@@ -33,16 +35,19 @@ public class BeamController : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 float rotationSpeed = -(Input.mousePosition.x - lastMouseX) * Time.deltaTime * sensitivity;
-                if(rotationSpeed > maxRotationSpeed) { rotationSpeed = maxRotationSpeed; }//clamps the rotation speed so it's not too high
-                if(rotationSpeed < -maxRotationSpeed) { rotationSpeed = -maxRotationSpeed; }
+                if (rotationSpeed > maxRotationSpeed) { rotationSpeed = maxRotationSpeed; }//clamps the rotation speed so it's not too high
+                if (rotationSpeed < -maxRotationSpeed) { rotationSpeed = -maxRotationSpeed; }
                 rotateRb.angularVelocity = new Vector3(0f, 0f, rotationSpeed);
+
+                // to make sure the transform doesn't magically rotate
+                rotateRb.transform.rotation = new Quaternion(0f, 0f, rotateRb.transform.rotation.z, rotateRb.transform.rotation.w);
 
                 lastMouseX = Input.mousePosition.x;
             }
             if (Input.GetKeyUp(KeyCode.Mouse0))
             {
                 rotateRb.isKinematic = true;
-                
+
             }
 
             //Clamps the rotation of the block
@@ -53,19 +58,20 @@ public class BeamController : MonoBehaviour
             rotateBlock.transform.position = transform.position;
 
             rb.velocity = new Vector3(0f, moveSpeed, 0f);
-            Debug.Log(rotateBlock.transform.rotation);
         }
-        if (GameEventManager.instance.finishThreshold.position.y < transform.position.y)
+
+
+        //Handle wether the player has finished
+        if (GameEventManager.instance.finishThreshold.position.y < transform.position.y && !hasFinished)
         {
+            hasFinished = true;
+            rotateRb.angularVelocity = Vector3.zero;
+            rb.velocity = Vector3.zero;
+            rb.isKinematic = true;
+            rotateRb.isKinematic = true;
             GameEventManager.instance.ReachFinish();
         }
     }
 
-    IEnumerator RotateTowardsTargetRotation() {
-        Quaternion targetRotation = new Quaternion(0.0f, 0.0f, 0.2f, 1.0f);
-        while (transform.rotation != targetRotation) {
-            //transform.rotate
-            yield return null;
-        }
-    }
+
 }
