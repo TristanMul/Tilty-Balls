@@ -7,6 +7,8 @@ public class BallPickup : MonoBehaviour
     Rigidbody rb;
     Renderer renderer;
     Collider collider;
+    float maxSpeed = 20f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +17,12 @@ public class BallPickup : MonoBehaviour
         collider = GetComponent<Collider>();
         float randomSize = Random.Range(.7f, 1f) ;
         transform.localScale = new Vector3(randomSize, randomSize, randomSize);
+    }
+
+    private void FixedUpdate()
+    {
+        if (rb.velocity.magnitude > maxSpeed)
+            rb.velocity = rb.velocity.normalized * maxSpeed;
     }
 
     private void OnTriggerEnter(Collider other)
