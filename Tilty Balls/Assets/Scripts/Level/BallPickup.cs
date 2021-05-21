@@ -8,6 +8,7 @@ public class BallPickup : MonoBehaviour
     Renderer renderer;
     Collider collider;
     float maxSpeed = 20f;
+    bool isActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +22,11 @@ public class BallPickup : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (rb.velocity.magnitude > maxSpeed)
-            rb.velocity = rb.velocity.normalized * maxSpeed;
+        if (isActive)
+        {
+            if (rb.velocity.magnitude > maxSpeed)
+                rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,6 +40,7 @@ public class BallPickup : MonoBehaviour
 
     private void GetPopped()
     {
+        isActive = true;
         rb.isKinematic = false;
         collider.isTrigger = false;
         gameObject.tag = "Player";
