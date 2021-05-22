@@ -7,7 +7,7 @@ public class OnDestroyBall : MonoBehaviour
     public ParticleSystem destroyParticles;
     Renderer thisRenderer;
     Rigidbody thisRb;
-    Color thisColor;
+    bool falling;
 
     private void Awake()
     {
@@ -32,11 +32,11 @@ public class OnDestroyBall : MonoBehaviour
         thisRb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY;
         thisRb.constraints = ~RigidbodyConstraints.FreezePositionZ;
         float elapsed = 0f;
-        float duration = 0.1f;
+        float duration = 0.2f;
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            thisRb.velocity = new Vector3(0, 0, 30);
+            thisRb.velocity = new Vector3(thisRb.velocity.x, thisRb.velocity.y, 30);
             yield return null;
         }
     }
@@ -50,7 +50,11 @@ public class OnDestroyBall : MonoBehaviour
 
         if (other.CompareTag("Hole"))
         {
-            StartCoroutine(MoveToHole());
+            if (!falling)
+            {
+                GetComponent<Collider>().enabled = false;
+                StartCoroutine(MoveToHole());
+            }
         }
     }
 }
