@@ -27,11 +27,18 @@ public class OnDestroyBall : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void MoveToHole()
+    IEnumerator MoveToHole()
     {
         thisRb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY;
         thisRb.constraints = ~RigidbodyConstraints.FreezePositionZ;
-        thisRb.velocity = new Vector3(0, 0, 30);
+        float elapsed = 0f;
+        float duration = 0.1f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            thisRb.velocity = new Vector3(0, 0, 30);
+            yield return null;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,7 +50,7 @@ public class OnDestroyBall : MonoBehaviour
 
         if (other.CompareTag("Hole"))
         {
-            MoveToHole();
+            StartCoroutine(MoveToHole());
         }
     }
 }
