@@ -20895,7 +20895,7 @@ GameObject:
   - component: {fileID: 1932948608}
   - component: {fileID: 1932948607}
   m_Layer: 9
-  m_Name: Destroy trigger
+  m_Name: Black
   m_TagString: KillZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

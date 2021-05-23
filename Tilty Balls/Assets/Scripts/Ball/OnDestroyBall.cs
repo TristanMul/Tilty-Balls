@@ -23,18 +23,25 @@ public class OnDestroyBall : MonoBehaviour
     IEnumerator MoveToHole()
     {
         thisRb.constraints = RigidbodyConstraints.None;
-        SetParticleColor();
-        ParticleSystem killParticles = Instantiate(destroyParticles, new Vector3(transform.position.x, transform.position.y, 20f), transform.rotation);
+       
         float elapsed = 0f;
-        float duration = 0.5f;
+        float duration = 1f;
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             thisRb.velocity = new Vector3(thisRb.velocity.x, thisRb.velocity.y, 30);
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, elapsed / duration);
             yield return null;
         }
         Destroy(gameObject);
         yield return null;
+    }
+
+    IEnumerator ParticleWait()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SetParticleColor();
+        Instantiate(destroyParticles, new Vector3(transform.position.x, transform.position.y, 20f), transform.rotation);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,6 +51,7 @@ public class OnDestroyBall : MonoBehaviour
             if (!falling)
             {
                 StartCoroutine(MoveToHole());
+                StartCoroutine(ParticleWait());
                 falling = true;
             }
         }
