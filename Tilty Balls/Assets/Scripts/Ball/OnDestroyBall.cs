@@ -23,20 +23,21 @@ public class OnDestroyBall : MonoBehaviour
     private void DestroyObject()
     {
         SetParticleColor();
-        ParticleSystem killParticles = Instantiate(destroyParticles, transform.position, transform.rotation);
+        Debug.Log("particles");
+        ParticleSystem killParticles = Instantiate(destroyParticles, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
         Destroy(this.gameObject);
     }
 
     IEnumerator MoveToHole()
     {
-        thisRb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY;
-        thisRb.constraints = ~RigidbodyConstraints.FreezePositionZ;
+        thisRb.constraints = RigidbodyConstraints.None;
+        thisRb.useGravity = true;
         float elapsed = 0f;
-        float duration = 0.2f;
+        float duration = 0.3f;
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            thisRb.velocity = new Vector3(thisRb.velocity.x, thisRb.velocity.y, 30);
+            thisRb.velocity = new Vector3(thisRb.velocity.x, thisRb.velocity.y, 10);
             yield return null;
         }
     }

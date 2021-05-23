@@ -14,7 +14,6 @@ public class BeamController : MonoBehaviour
 
     bool hasFinished;
 
-    [SerializeField] Transform pullUpBar;
     // Start is called before the first frame update
     void OnEnable()
     {
