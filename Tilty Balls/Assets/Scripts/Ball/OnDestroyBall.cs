@@ -39,9 +39,9 @@ public class OnDestroyBall : MonoBehaviour
 
     IEnumerator ParticleWait()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         SetParticleColor();
-        Instantiate(destroyParticles, new Vector3(transform.position.x, transform.position.y, 20f), transform.rotation);
+        Instantiate(destroyParticles, new Vector3(transform.position.x, transform.position.y, 30f), transform.rotation);
     }
 
     private void OnTriggerEnter(Collider other)
