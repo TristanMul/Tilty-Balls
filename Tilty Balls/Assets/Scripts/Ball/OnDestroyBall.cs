@@ -17,44 +17,34 @@ public class OnDestroyBall : MonoBehaviour
 
     private void SetParticleColor()
     {
-        destroyParticles.startColor = thisRenderer.material.GetColor("_EmissionColor");
-    }
-
-    private void DestroyObject()
-    {
-        SetParticleColor();
-        Debug.Log("particles");
-        ParticleSystem killParticles = Instantiate(destroyParticles, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
-        Destroy(this.gameObject);
+        destroyParticles.startColor = thisRenderer.material.GetColor("_Color");
     }
 
     IEnumerator MoveToHole()
     {
         thisRb.constraints = RigidbodyConstraints.None;
-        thisRb.useGravity = true;
+        SetParticleColor();
+        ParticleSystem killParticles = Instantiate(destroyParticles, new Vector3(transform.position.x, transform.position.y, 20f), transform.rotation);
         float elapsed = 0f;
-        float duration = 0.3f;
+        float duration = 0.5f;
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            thisRb.velocity = new Vector3(thisRb.velocity.x, thisRb.velocity.y, 10);
+            thisRb.velocity = new Vector3(thisRb.velocity.x, thisRb.velocity.y, 30);
             yield return null;
         }
+        Destroy(gameObject);
+        yield return null;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("KillZone"))
-        {
-            DestroyObject();
-        }
-
         if (other.CompareTag("Hole"))
         {
             if (!falling)
             {
-                GetComponent<Collider>().enabled = false;
                 StartCoroutine(MoveToHole());
+                falling = true;
             }
         }
     }
