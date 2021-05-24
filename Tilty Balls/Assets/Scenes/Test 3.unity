@@ -3595,7 +3595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateBlock: {fileID: 637658046}
-  sensitivity: 20
+  sensitivity: 2.5
   moveSpeed: 2.5
   maxRotationSpeed: 5
   rotateRb: {fileID: 0}
