@@ -52,7 +52,7 @@ public class BeamController : MonoBehaviour
             //Clamps the rotation of the block
             rotateBlock.transform.rotation =
                 new Quaternion(rotateBlock.transform.rotation.x, rotateBlock.transform.rotation.y,
-                Mathf.Clamp(rotateBlock.transform.rotation.z, -.4f, .4f),
+                Mathf.Clamp(rotateBlock.transform.rotation.z, -.25f, .25f),
                 rotateBlock.transform.rotation.w);
             rotateBlock.transform.position = transform.position;
 

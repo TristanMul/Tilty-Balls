@@ -16,7 +16,7 @@ public class BallPickup : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         renderer = GetComponent<Renderer>();
         collider = GetComponent<Collider>();
-        float randomSize = Random.Range(.5f, .75f) ;
+        float randomSize = Random.Range(0.6f, 0.9f) ;
         //float randomSize = 0.75f;
         transform.localScale = new Vector3(randomSize, randomSize, randomSize);
     }
