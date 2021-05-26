@@ -16,7 +16,7 @@ public class LevelManager: MonoBehaviour
         {
             instance = this;
         }
-        amountOfCoins.text = PlayerPrefs.GetInt("Coin").ToString();
+        //amountOfCoins.text = PlayerPrefs.GetInt("Coin").ToString();
     }
     public void AddCoins(int coinsAdded)
     {
