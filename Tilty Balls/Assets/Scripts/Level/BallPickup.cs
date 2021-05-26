@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BallPickup : MonoBehaviour
 {
+    [SerializeField] ObjectList ballList;
     Rigidbody rb;
     Renderer renderer;
     Collider collider;
@@ -49,7 +50,7 @@ public class BallPickup : MonoBehaviour
         Color newColor = RandomColor();
         renderer.material.color = newColor;
         renderer.material.SetColor("_EmissionColor", newColor/2);
-
+        ballList.RegisterObject(this.gameObject);
     }
 
     Color RandomColor()
