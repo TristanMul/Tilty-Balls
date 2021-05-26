@@ -35,10 +35,11 @@ public class BeamFinishBehaviour : MonoBehaviour
             yield return null;
         }
         currentTime = 0f;
+        Vector3 originalBarPosition = pullUpBar.position;
         while (currentTime < 1f)
         {
             currentTime += Time.deltaTime / duration * 2f;
-            pullUpBar.position = Vector3.Lerp(pullUpBar.position, pullUpBar.position + transform.up * .1f, currentTime);
+            pullUpBar.position = Vector3.Lerp(originalBarPosition, originalBarPosition + -pullUpBar.transform.right * 2f, currentTime);
             yield return null;
         }
     }
