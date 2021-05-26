@@ -7,7 +7,7 @@ public class OnDestroyBall : MonoBehaviour
     public ParticleSystem destroyParticles;
     Renderer thisRenderer;
     Rigidbody thisRb;
-    Color thisColor;
+    bool falling;
 
     private void Awake()
     {
@@ -17,33 +17,43 @@ public class OnDestroyBall : MonoBehaviour
 
     private void SetParticleColor()
     {
-        destroyParticles.startColor = thisRenderer.material.GetColor("_EmissionColor");
+        destroyParticles.startColor = thisRenderer.material.GetColor("_Color");
     }
 
-    private void DestroyObject()
+    IEnumerator MoveToHole()
     {
+        thisRb.constraints = RigidbodyConstraints.None;
+       
+        float elapsed = 0f;
+        float duration = 1f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            thisRb.velocity = new Vector3(thisRb.velocity.x, thisRb.velocity.y, 30);
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, elapsed / duration);
+            yield return null;
+        }
+        Destroy(gameObject);
+        yield return null;
+    }
+
+    IEnumerator ParticleWait()
+    {
+        yield return new WaitForSeconds(0.25f);
         SetParticleColor();
-        ParticleSystem killParticles = Instantiate(destroyParticles, transform.position, transform.rotation);
-        Destroy(this.gameObject);
-    }
-
-    private void MoveToHole()
-    {
-        thisRb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY;
-        thisRb.constraints = ~RigidbodyConstraints.FreezePositionZ;
-        thisRb.velocity = new Vector3(0, 0, 30);
+        Instantiate(destroyParticles, new Vector3(transform.position.x, transform.position.y, 30f), transform.rotation);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("KillZone"))
-        {
-            DestroyObject();
-        }
-
         if (other.CompareTag("Hole"))
         {
-            MoveToHole();
+            if (!falling)
+            {
+                StartCoroutine(MoveToHole());
+                StartCoroutine(ParticleWait());
+                falling = true;
+            }
         }
     }
 }
