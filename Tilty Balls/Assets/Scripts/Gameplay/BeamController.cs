@@ -8,11 +8,12 @@ public class BeamController : MonoBehaviour
     [SerializeField] float sensitivity;
     [SerializeField] float moveSpeed;
     [SerializeField] float maxRotationSpeed;
+    [SerializeField] GameEvent onReachFinish;
     [HideInInspector] public Rigidbody rotateRb;
     float lastMouseX;
     Rigidbody rb;
 
-    bool hasFinished;
+    bool hasFinished = false;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -58,19 +59,24 @@ public class BeamController : MonoBehaviour
 
             rb.velocity = new Vector3(0f, moveSpeed, 0f);
         }
+    }
 
 
-        //Handle wether the player has finished
-        if (GameEventManager.instance.finishThreshold.position.y < transform.position.y && !hasFinished)
-        {
-            hasFinished = true;
-            rotateRb.angularVelocity = Vector3.zero;
-            rb.velocity = Vector3.zero;
-            rb.isKinematic = true;
-            rotateRb.isKinematic = true;
-            GameEventManager.instance.ReachFinish();
+    private void OnTriggerStay(Collider other) {
+        if(other.CompareTag("Finish")){
+            if(transform.position.y > other.transform.position.y){
+                other.GetComponent<Collider>().enabled = false;
+                hasFinished = true;
+                rotateRb.angularVelocity = Vector3.zero;
+                rb.velocity = Vector3.zero;
+                rb.isKinematic = true;
+                rotateRb.isKinematic = true;
+                onReachFinish.Raise();
+            }
         }
     }
+
+    
 
 
 }

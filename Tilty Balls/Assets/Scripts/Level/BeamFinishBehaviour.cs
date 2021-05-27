@@ -8,16 +8,16 @@ public class BeamFinishBehaviour : MonoBehaviour
     Rigidbody rotateRb;
     [SerializeField] Transform pullUpBar;
     [SerializeField] Transform pullUpCollider;
+    [SerializeField] GameEvent onTransitionToFinalStage;
 
     // Start is called before the first frame update
     void Start()
     {
         beamController = GetComponent<BeamController>();
         rotateRb = beamController.rotateRb;
-        GameEventManager.instance.reachFinish += OnFinish;
     }
 
-    void OnFinish()
+    public void OnFinish()
     {
         pullUpCollider.gameObject.SetActive(false);
         StartCoroutine(RotateTowardsTargetRotation(1f));
@@ -42,5 +42,6 @@ public class BeamFinishBehaviour : MonoBehaviour
             pullUpBar.position = Vector3.Lerp(originalBarPosition, originalBarPosition + -pullUpBar.transform.right * 2f, currentTime);
             yield return null;
         }
+        onTransitionToFinalStage.Raise();
     }
 }
