@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class FirstBall : MonoBehaviour
 {
+    [SerializeField] ObjectList ballList;
     Rigidbody rb;
     float maxSpeed = 20f;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        ballList.ClearList();
+        ballList.RegisterObject(this.gameObject);
         rb = GetComponent<Rigidbody>();
     }
 

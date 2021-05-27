@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class OnDestroyBall : MonoBehaviour
 {
+    [SerializeField] GameObject minusOne;
+    [SerializeField] ObjectList ballList;
+    [SerializeField] GameEvent gameOver;
     public ParticleSystem destroyParticles;
     Renderer thisRenderer;
     Rigidbody thisRb;
@@ -42,6 +45,8 @@ public class OnDestroyBall : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         SetParticleColor();
         Instantiate(destroyParticles, new Vector3(transform.position.x, transform.position.y, 30f), transform.rotation);
+        Instantiate(minusOne, new Vector3(transform.position.x, transform.position.y, transform.position.z - 6f), Quaternion.identity);
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,10 +55,22 @@ public class OnDestroyBall : MonoBehaviour
         {
             if (!falling)
             {
+                ballList.UnregisterObject(this.gameObject);
+                GameOverCheck();
+
                 StartCoroutine(MoveToHole());
                 StartCoroutine(ParticleWait());
                 falling = true;
             }
+        }
+    }
+
+    private void GameOverCheck()
+    {
+        if (ballList.CurrentObjectList.Count <= 0)
+        {
+            gameOver.Raise();
+            Debug.Log("Game Over");
         }
     }
 }

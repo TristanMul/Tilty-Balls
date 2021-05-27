@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f45f1e26823a4749b7d101c1e1d8ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballList: {fileID: 11400000, guid: efd6a3dc3fbbabe459c028d8969e26a8, type: 2}
 --- !u!114 &3240762048234896447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,5 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4717c9ddad952284285a2dd073aae4db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minusOne: {fileID: 358912816609487088, guid: f6d0c2b67a52c5c4fa539fedaf8a9421, type: 3}
+  ballList: {fileID: 11400000, guid: efd6a3dc3fbbabe459c028d8969e26a8, type: 2}
+  gameOver: {fileID: 11400000, guid: 3b3fa1a2f307a54419416d38195df603, type: 2}
   destroyParticles: {fileID: 6468720833245639470, guid: 82bd6ff6518f4354899e2ed5fabae93b,
     type: 3}
