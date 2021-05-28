@@ -12,7 +12,6 @@ public class FinishCounter : MonoBehaviour
         if (other.CompareTag("Player"))
         {
         amountOfBalls++;
-        Debug.Log("Added Ball");
             ballsEntered = true;
         }
     }
@@ -21,7 +20,6 @@ public class FinishCounter : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             amountOfBalls--;
-            Debug.Log("Removed Ball");
         }
         if(amountOfBalls == 0 && ballsEntered)
         {

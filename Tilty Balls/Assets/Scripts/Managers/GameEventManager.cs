@@ -17,7 +17,6 @@ public class GameEventManager : MonoBehaviour
         if (!instance)
         {
             instance = this;
-            Debug.Log(instance);
         }
     }
 

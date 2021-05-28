@@ -9,7 +9,6 @@ public class MultiplierGate : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            Debug.Log(this);
             other.GetComponent<MultiplyBall>().Multiply(amount, this);
         }
     }
