@@ -545,8 +545,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 29.710949, y: 4.683628, z: 1}
-  m_Center: {x: -2.643044, y: -4.7775726, z: 0}
+  m_Size: {x: 40, y: 5, z: 40}
+  m_Center: {x: 0, y: -5, z: 0}
 --- !u!1001 &46346353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4522,7 +4522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateBlock: {fileID: 637658046}
-  sensitivity: 2.5
+  sensitivity: 20
   moveSpeed: 2.5
   maxRotationSpeed: 5
   rotateRb: {fileID: 0}
