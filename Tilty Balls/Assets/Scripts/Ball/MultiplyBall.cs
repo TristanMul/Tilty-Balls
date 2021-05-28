@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class MultiplyBall : MonoBehaviour
 {
-
+    Rigidbody rb;
     List<MultiplierGate> sourcesUsed = new List<MultiplierGate>();
     bool canMultiply;
     private void Start()
     {
-        StartCoroutine(WaitAndEnableMultiply(.3f));
+        StartCoroutine(WaitAndEnableMultiply(0f));
+        rb = GetComponent<Rigidbody>();
     }
 
 
@@ -27,6 +28,7 @@ public class MultiplyBall : MonoBehaviour
     /// <param name="source">The identifying int used from the source so the same won't be used twice </param>
     public void Multiply(int amount, MultiplierGate source)
     {
+
         bool willMultiply = true;
         foreach (MultiplierGate i in sourcesUsed)
         {
@@ -41,10 +43,20 @@ public class MultiplyBall : MonoBehaviour
             {
                 if (canMultiply)
                 {
-                    Instantiate(gameObject);
+                    GameObject newBall = Instantiate(gameObject, transform.position + new Vector3(transform.localScale.x * (float)(i + 1), 0f, 0f), transform.rotation);
+                    newBall.GetComponent<Rigidbody>().velocity = rb.velocity;
+                    newBall.GetComponent<MultiplyBall>().SetUsedGates(sourcesUsed);
                 }
             }
             sourcesUsed.Add(source);
+        }
+    }
+
+    public void SetUsedGates(List<MultiplierGate> value)
+    {
+        foreach(MultiplierGate gate in value)
+        {
+            sourcesUsed.Add(gate);
         }
     }
 }
