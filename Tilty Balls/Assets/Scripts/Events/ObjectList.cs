@@ -19,7 +19,6 @@ public class ObjectList : ScriptableObject
     {
         if (objectList.Contains(obj))
             objectList.Remove(obj);
-        Debug.Log(objectList.Count);
     }
 
     public void ClearList()

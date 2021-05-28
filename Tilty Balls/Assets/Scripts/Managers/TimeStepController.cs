@@ -5,11 +5,11 @@ using UnityEngine;
 public class TimeStepController : MonoBehaviour
 {
     private void Awake() {
-        RaiseTimeStep();
+        LowerTimeStep();
     }
 
     public void RaiseTimeStep(){
-        Time.fixedDeltaTime = 0.02f;
+        Time.fixedDeltaTime = 0.005f;
     }
 
     public void LowerTimeStep(){

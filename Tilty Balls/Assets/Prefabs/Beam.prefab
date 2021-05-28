@@ -91,8 +91,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 5, z: 2}
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Size: {x: 1.25, y: 5, z: 2}
+  m_Center: {x: -0.12, y: 2, z: 0}
 --- !u!1 &7211815973935841246
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,6 +460,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0fe29b8bf3d720409e9aa095c9e9e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finalStageCameraPosition: {fileID: 0}
+  transitionDuration: 2
 --- !u!1 &7211815974421889970
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,8 +632,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 5, z: 2}
-  m_Center: {x: 0, y: -2, z: 0}
+  m_Size: {x: 1.25, y: 4.999999, z: 2}
+  m_Center: {x: -0.12, y: -2, z: 0}
 --- !u!1 &7211815975260262861
 GameObject:
   m_ObjectHideFlags: 0
