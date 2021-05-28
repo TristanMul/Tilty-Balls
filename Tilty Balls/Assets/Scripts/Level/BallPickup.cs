@@ -5,6 +5,7 @@ using UnityEngine;
 public class BallPickup : MonoBehaviour
 {
     [SerializeField] ObjectList ballList;
+    public ParticleSystem pickupParticles;
     Rigidbody rb;
     Renderer renderer;
     Collider collider;
@@ -37,6 +38,9 @@ public class BallPickup : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, other.transform.position.z);
             GetPopped();
+            var main = other.GetComponent<Renderer>().material;
+            pickupParticles.startColor = main.color;
+            Instantiate(pickupParticles, new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z - 6f), other.transform.rotation);
         }
     }
 

@@ -45,8 +45,9 @@ public class OnDestroyBall : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         SetParticleColor();
         Instantiate(destroyParticles, new Vector3(transform.position.x, transform.position.y, 30f), transform.rotation);
-        Instantiate(minusOne, new Vector3(transform.position.x, transform.position.y, transform.position.z - 6f), Quaternion.identity);
-        
+        GameObject minParticle = Instantiate(minusOne, new Vector3(transform.position.x, transform.position.y, transform.position.z - 6f), Quaternion.identity);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(minParticle);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -70,7 +71,6 @@ public class OnDestroyBall : MonoBehaviour
         if (ballList.CurrentObjectList.Count <= 0)
         {
             gameOver.Raise();
-            Debug.Log("Game Over");
         }
     }
 }

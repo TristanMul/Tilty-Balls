@@ -13,14 +13,12 @@ public class ObjectList : ScriptableObject
     {
         if (!objectList.Contains(obj))
             objectList.Add(obj);
-        Debug.Log(objectList.Count);
     }
 
     public void UnregisterObject(GameObject obj)
     {
         if (objectList.Contains(obj))
             objectList.Remove(obj);
-        Debug.Log(objectList.Count);
     }
 
     public void ClearList()

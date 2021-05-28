@@ -9,7 +9,6 @@ public class DestroyOnImpact : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<OnDestroyBall>();
-            Debug.Log("collide");
         }
     }
 }
